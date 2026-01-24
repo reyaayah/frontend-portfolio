@@ -8,7 +8,7 @@ import { Folder, Star } from "lucide-react";
 export default function ProjectsPage() {
   return (
     <>
-      <section className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-white py-20 px-6">
+      <section className="min-h-screen bg-gradient-to-b from-slate-50 via-purple-50 to-white py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div
             className="text-center mb-16"

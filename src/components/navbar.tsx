@@ -33,11 +33,10 @@ export default function Navbar() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className={`relative hover:text-purple-700 transition ${
-                  pathname === item.href
+                className={`relative hover:text-purple-700 transition ${pathname === item.href
                     ? "text-purple-500 font-semibold"
                     : "text-gray-600"
-                }`}
+                  }`}
               >
                 {item.name}
                 {pathname === item.href && (
@@ -66,9 +65,8 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`block py-2 text-sm font-medium transition ${
-                pathname === item.href ? "text-purple-700" : "text-gray-600"
-              }`}
+              className={`block py-2 text-sm font-medium transition ${pathname === item.href ? "text-purple-700" : "text-gray-600"
+                }`}
             >
               {item.name}
             </Link>
