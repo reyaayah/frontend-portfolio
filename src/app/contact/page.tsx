@@ -1,154 +1,140 @@
 "use client";
 
-import { send, sendForm } from "emailjs-com";
+import { sendForm } from "emailjs-com";
 import { motion } from "framer-motion";
-import { Mail, Send, Github, Linkedin, Phone } from "lucide-react";
+import { Mail, Send, Github, Linkedin, Phone, User, Cloud } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function Contact() {
-  const form = useRef(null);
+  const form = useRef<HTMLFormElement | null>(null);
   const [status, setStatus] = useState("");
+
   useEffect(() => {
-    if (status && status.includes("successfully")) {
-      const timer = setTimeout(() => setStatus(""), 6000); // 3 seconds
+    if (status.includes("successfully")) {
+      const timer = setTimeout(() => setStatus(""), 5000);
       return () => clearTimeout(timer);
     }
   }, [status]);
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Sending...");
-    console.log(form.current);
+    setStatus("Sending message...");
+
     sendForm(
-      "service_j1mxay3", // replace with your EmailJS service ID
-      "template_myutlmw", // replace with your EmailJS template ID
+      "service_66ksnr8",
+      "template_g8y6ton",
       form.current!,
-      "XAPTGrB5hVAMxBTXW" // replace with your EmailJS public key
+      "QZOcYQGZWq2p2PnuZ"
     ).then(
-      () => {
-        setStatus("Message sent successfully! ✅");
-      },
-      (error) => {
-        setStatus("Failed to send message. ❌");
-        console.error(error);
-      }
+      () => setStatus("Message sent successfully! 🚀"),
+      () => setStatus("Failed to send message. ❌")
     );
   };
-  return (
-    <section className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center text-purple-700 mb-12"
-        >
-          📬 Contact Me
-        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Contact Info */}
+  return (
+    <section className="relative min-h-screen bg-gradient-to-b from-slate-50 via-purple-50 to-white px-6 py-24">
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center gap-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-purple-700">
+              Let’s Connect
+            </h2>
+            <Cloud className="w-12 h-12 text-purple-400" />
+          </div>
+          <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+            Have an idea, project, or just want to say hi?
+            I’m always open to meaningful conversations.
+          </p>
+        </motion.div>
+
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Left Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <p className="text-gray-700 text-lg">
-              I'd love to hear from you! Whether you have a question or just
-              want to say hi — drop a message and I’ll get back as soon as
-              possible.
-            </p>
+            <div className="space-y-5 text-gray-700">
+              <InfoItem icon={<Mail />} text="riyaawal7@gmail.com" />
+              <InfoItem icon={<Phone />} text="9841028543" />
+              <InfoItem
+                icon={<Github />}
+                link="https://github.com/reyaayah"
+                text="github.com/reyaayah"
+              />
+              <InfoItem
+                icon={<Linkedin />}
+                link="https://np.linkedin.com/in/riya-awal-591330294"
+                text="linkedin.com/in/riyaawal"
+              />
+            </div>
 
-            <div className="space-y-4 text-sm text-gray-600">
-              <div className="flex items-center gap-3">
-                <Mail className="text-purple-600 w-5 h-5" />
-                <span>riyaawal7@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="text-purple-600 w-5 h-5" />
-                <span>9841028543</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Github className="text-purple-600 w-5 h-5" />
-                <a
-                  href="https://github.com/reyaayah"
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  github.com/reyaayah
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Linkedin className="text-purple-600 w-5 h-5" />
-                <a
-                  href="https://np.linkedin.com/in/riya-awal-591330294"
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  linkedin.com/in/riyaawal
-                </a>
-              </div>
+            <div className="rounded-xl bg-white/60 backdrop-blur-md p-6 shadow-sm">
+              <p className="text-sm text-gray-600 italic">
+                “Great things are built through conversations.”
+              </p>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Form */}
           <motion.form
-            initial={{ opacity: 0, x: 30 }}
+            ref={form}
+            onSubmit={sendEmail}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            ref={form}
-            className="space-y-6 bg-white p-8 rounded-xl shadow-md"
-            onSubmit={sendEmail}
+            className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl p-8 space-y-6"
           >
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Your Name
-              </label>
-              <input
-                type="text"
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                required
-                name="name"
-              />
-            </div>
+            <InputField
+              label="Your Name"
+              icon={<User size={18} />}
+              name="from_name"
+              type="text"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label>
-              <input
-                type="email"
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                required
-                name="email"
-              />
-            </div>
+            <InputField
+              label="Email Address"
+              icon={<Mail size={18} />}
+              name="reply_to"
+              type="email"
+            />
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Your Message
               </label>
               <textarea
-                rows={5}
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                required
                 name="message"
+                rows={5}
+                required
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-purple-400 focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded flex items-center gap-2 transition"
+              className="w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 py-3 font-semibold text-white transition hover:scale-[1.02] hover:shadow-lg"
             >
-              <Send size={16} /> Send Message
+              <Send size={18} />
+              Send Message
             </button>
+
             {status && (
               <div
-                className={`mt-4 text-center font-medium ${
-                  status.includes("successfully")
-                    ? "text-green-600"
+                className={`text-center text-sm font-medium ${status.includes("successfully")
+                  ? "text-green-600"
+                  : status.includes("Failed")
+                    ? "text-red-600"
                     : "text-blue-600"
-                }`}
+                  }`}
               >
                 {status}
               </div>
@@ -157,5 +143,61 @@ export default function Contact() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* Reusable Components */
+
+function InfoItem({
+  icon,
+  text,
+  link,
+}: {
+  icon: React.ReactNode;
+  text: string;
+  link?: string;
+}) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="rounded-lg bg-purple-100 p-2 text-purple-600">
+        {icon}
+      </div>
+      {link ? (
+        <a href={link} target="_blank" className="hover:underline">
+          {text}
+        </a>
+      ) : (
+        <span>{text}</span>
+      )}
+    </div>
+  );
+}
+
+function InputField({
+  label,
+  icon,
+  ...props
+}: {
+  label: string;
+  icon: React.ReactNode;
+  name: string;
+  type: string;
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        {label}
+      </label>
+      <div className="relative">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+          {icon}
+        </span>
+        <input
+          {...props}
+          required
+          className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-3 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+        />
+      </div>
+    </div>
   );
 }

@@ -67,7 +67,7 @@ export default function About() {
               "Next.js",
               "Git & GitHub",
               "Figma",
-              "Firebase",
+              "React Native",
             ].map((skill, index) => (
               <span
                 key={index}

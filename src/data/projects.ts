@@ -6,71 +6,115 @@ export interface ProjectType {
   image: string;
   technologies: string[];
   githubLink: string;
+  liveLink?: string;
 }
 
 export const projects: ProjectType[] = [
   {
+    title: "Point of Sale App & Product Website",
+    description:
+      "A POS application for restaurant businesses built with React Native and Tailwind CSS. Features role-based authentication and modules for menu, orders, and payments.",
+    image: "/pos.png",
+    technologies: ["React Native", "Tailwind CSS"],
+    githubLink: "",
+    liveLink: "https://www.lendenpos.com/",
+  },
+  {
+    title: "Cuisine Kathmandu",
+    description:
+      "A dynamic restaurant web application built with Next.js. Includes an admin dashboard with reusable components and state management using Redux.",
+    image: "/cuisinektm.png",
+    technologies: ["Next.js", "Redux", "Tailwind CSS"],
+    githubLink: "",
+  },
+  {
+    title: "Dhimay Website",
+    description:
+      "A static company website built during the initial project phase using React and Tailwind CSS.",
+    image: "/dhimay.png",
+    technologies: ["React", "Tailwind CSS"],
+    githubLink: "",
+    liveLink: "https://dhimay.com/",
+  },
+  {
+    title: "Riya Awal Portfolio",
+    description:
+      "A personal portfolio website built with Next.js to showcase projects, skills, and professional experience.",
+    image: "/preview.png",
+    technologies: ["Next.js", "Tailwind CSS"],
+    githubLink: "https://github.com/reyaayah/frontend-portfolio",
+  },
+  {
     title: "UnFold Quotes",
     description:
-      "A simple quote Generator app that uses jSON data and displays them in a user-friendly interface.",
-    image: "/ri.png",
+      "A simple quote generator app that uses JSON data and displays quotes in a user-friendly interface.",
+    image: "/unfoldquotes.png",
     technologies: ["HTML", "CSS", "JavaScript"],
     githubLink: "https://github.com/reyaayah/UnFold-Quotes",
+    liveLink: "https://quotegeneratortask.netlify.app/"
   },
   {
     title: "Business License and Permit Portal",
     description:
-      "A comprehensive portal for managing business licenses and permits, streamlining the process.",
-    image: "/ri.png",
-    technologies: ["HTML", "CSS", "JavaScript", "php", "MySQL"],
+      "A comprehensive portal for managing business licenses and permits, streamlining the application and approval process.",
+    image: "/businesslicense.png",
+    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     githubLink:
       "https://github.com/reyaayah/Business-License-and-permit-portal",
   },
   {
-    title: "E-commerce Site",
+    title: "Pizza Shop App",
     description:
-      "Pizza Shop App is a fully functional e-commerce site built with React and Tailwind CSS, featuring product listings and a shopping cart.",
-    image: "/ri.png",
+      "A fully functional e-commerce pizza shop built with React and Tailwind CSS, featuring menu display and cart management.",
+    image: "/pizzashop.png",
     technologies: ["React", "Tailwind CSS"],
     githubLink: "https://github.com/reyaayah/Ecommerce-site",
   },
   {
+    title: "Web Orchestrator",
+    description:
+      "A web-based application for orchestrating and managing various web services and workflows.",
+    image: "/weborch.png",
+    technologies: ["Next.js", "Tailwind CSS"],
+    githubLink: "",
+  },
+  {
     title: "Hospital Management System",
     description:
-      "A comprehensive system for managing hospital operations, including patient records, appointments, and billing, showcasing OOP concepts.",
-    image: "/ri.png",
+      "A system for managing hospital operations such as patient records, appointments, and billing, demonstrating OOP concepts.",
+    image: "/projectpreview.png",
     technologies: ["C++"],
     githubLink: "https://github.com/reyaayah/HospitalManagementSystem",
   },
   {
-    title: "pingpongGame",
-    description: "A simple ping pong game built using C programming.",
-    image: "/ri.png",
+    title: "Ping Pong Game",
+    description: "A simple ping pong game developed using C programming.",
+    image: "/projectpreview.png",
     technologies: ["C Programming"],
     githubLink: "https://github.com/reyaayah/PingpongGame",
   },
   {
     title: "Soulsync",
     description:
-      "A Flutter app that helps users track their daily habits and goals, promoting personal growth and productivity.",
-    image: "/ri.png",
-    technologies: ["dart", "flutter"],
+      "A Flutter application for tracking daily habits and personal goals to promote productivity and self-growth.",
+    image: "/projectpreview.png",
+    technologies: ["Dart", "Flutter"],
     githubLink: "https://github.com/reyaayah/soulsync",
   },
   {
     title: "Telephone Directory",
     description:
-      "A simple telephone directory application that allows users to store and retrieve contact information. This is a simple project of Data Structure and Algorithm using double linked list.",
-    image: "/ri.png",
+      "A telephone directory application built using data structures and algorithms with a doubly linked list.",
+    image: "/projectpreview.png",
     technologies: ["C++"],
     githubLink: "https://github.com/reyaayah/TelephoneDirectory",
   },
   {
     title: "Music Recommendation System",
     description:
-      "A Python-based music recommendation system that suggests songs based on songs lyrics and title.",
-    image: "/ri.png",
-    technologies: ["python"],
+      "A Python-based recommendation system that suggests songs based on lyrics and titles.",
+    image: "/projectpreview.png",
+    technologies: ["Python"],
     githubLink: "https://github.com/reyaayah/Music-Recommendation-System",
   },
 ];
