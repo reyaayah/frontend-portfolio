@@ -225,7 +225,7 @@ export default function Experience() {
           className="text-center mt-16"
         >
           <a
-            href="/resume.pdf"
+            href="/Reya-Awal-cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
