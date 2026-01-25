@@ -142,6 +142,8 @@ export default function Hero() {
               <div className="relative w-80 h-80 md:w-96 md:h-96">
                 <Image
                   src="/ri.png"
+                  width={100}
+                  height={100}
                   alt="Riya Awal"
                   className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
                 />
