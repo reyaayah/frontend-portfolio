@@ -3,6 +3,7 @@
 import FeaturedVideos from "@/components/FeaturedVideos";
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -41,7 +42,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-5xl md:text-7xl font-bold text-slate-900 leading-tight"
             >
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Riya Awal
               </span>
@@ -139,7 +140,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-2xl opacity-20 scale-110" />
 
               <div className="relative w-80 h-80 md:w-96 md:h-96">
-                <img
+                <Image
                   src="/ri.png"
                   alt="Riya Awal"
                   className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"

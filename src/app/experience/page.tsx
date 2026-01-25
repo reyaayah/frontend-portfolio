@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, ArrowUpRight, Target, TargetIcon, ArchiveRestore, Trophy, Sparkles } from "lucide-react";
+import { Briefcase, Calendar, MapPin, ArrowUpRight, Trophy, Sparkles } from "lucide-react";
 
 // Your experience data
 const experiences = [

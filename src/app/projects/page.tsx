@@ -2,8 +2,7 @@
 
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
-import { motion } from "framer-motion";
-import { Folder, Star } from "lucide-react";
+import { Folder } from "lucide-react";
 
 export default function ProjectsPage() {
   return (
@@ -26,7 +25,7 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              A collection of projects I've built, ranging from web applications to mobile apps
+              A collection of projects I&apos;ve built, ranging from web applications to mobile apps
             </p>
           </div>
 
@@ -37,12 +36,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
-      {/* <section className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-8 text-purple-700">
-          GitHub Stats
-        </h2>
-        <GithubStatusWrapper />
-      </section> */}
+
     </>
   );
 }

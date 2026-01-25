@@ -34,7 +34,7 @@ export default function About() {
             👋 About Me
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
-            I'm <span className="font-semibold text-purple-600">Riya Awal</span>
+            I&apos;m <span className="font-semibold text-purple-600">Riya Awal</span>
             , a passionate and creative Frontend Developer with a love for
             building beautiful, responsive, and user-centric web applications.
           </p>
@@ -47,8 +47,8 @@ export default function About() {
             functional interfaces.
           </p>
           <p className="text-gray-700 text-lg leading-relaxed mb-6">
-            I'm always eager to learn, collaborate, and push the boundaries of
-            what I can create. When I'm not coding, you might find me exploring
+            I&apos;m always eager to learn, collaborate, and push the boundaries of
+            what I can create. When I&apos;m not coding, you might find me exploring
             new UI trends or sipping coffee while sketching ideas.
           </p>
 

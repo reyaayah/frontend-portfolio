@@ -43,7 +43,7 @@ export default function Contact() {
         >
           <div className="flex items-center justify-center gap-4">
             <h2 className="text-4xl md:text-5xl font-extrabold text-purple-700">
-              Let’s Connect
+              Let&apos;s Connect
             </h2>
             <Cloud className="w-12 h-12 text-purple-400" />
           </div>
