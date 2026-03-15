@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -16,6 +17,7 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-purple-300 via-purple-100 to-purple-100 text-white">
@@ -28,14 +30,14 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex gap-6 text-sm font-medium">
+        <ul className="hidden md:flex gap-6 text-sm font-medium items-center">
           {navItems.map((item) => (
             <li key={item.name}>
               <Link
                 href={item.href}
                 className={`relative hover:text-purple-700 transition ${pathname === item.href
-                    ? "text-purple-500 font-semibold"
-                    : "text-gray-600"
+                  ? "text-purple-500 font-semibold"
+                  : "text-gray-600"
                   }`}
               >
                 {item.name}
@@ -45,6 +47,28 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+
+          {/* Admin Link */}
+          {isAuthenticated ? (
+            <li>
+              <Link
+                href="/admin/dashboard"
+                className="px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+              >
+                Admin
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                href="/admin/login"
+                className="flex items-center gap-1 px-3 py-1 text-gray-600 hover:text-purple-700 transition"
+              >
+                <LogIn size={16} />
+                Admin
+              </Link>
+            </li>
+          )}
         </ul>
 
         {/* Mobile Menu Button */}
@@ -71,6 +95,25 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
+
+          {/* Admin Link Mobile */}
+          {isAuthenticated ? (
+            <Link
+              href="/admin/dashboard"
+              onClick={() => setMenuOpen(false)}
+              className="block py-2 px-3 bg-purple-600 text-white rounded-lg text-sm font-medium"
+            >
+              Admin Dashboard
+            </Link>
+          ) : (
+            <Link
+              href="/admin/login"
+              onClick={() => setMenuOpen(false)}
+              className="block py-2 text-sm font-medium text-gray-600"
+            >
+              Admin Login
+            </Link>
+          )}
         </div>
       )}
     </header>
