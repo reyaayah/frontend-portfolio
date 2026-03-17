@@ -1,9 +1,9 @@
 // components/ProjectCard.tsx
 "use client";
 
+import { ProjectType } from "@/app/projects/page";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ProjectType } from "@/data/projects";
 
 export default function ProjectCard({
   project,
@@ -21,8 +21,9 @@ export default function ProjectCard({
       className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition"
     >
       <div className="w-full h-48 relative">
+        
         <Image
-          src={project.image}
+          src={project.image || "/projectpreview.png"}
           alt={project.title}
           fill
           className="object-cover"
@@ -35,7 +36,7 @@ export default function ProjectCard({
         <p className="text-gray-700 text-sm mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, i) => (
+          {project?.techStack?.map((tech, i) => (
             <span
               key={i}
               className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full"
@@ -46,9 +47,9 @@ export default function ProjectCard({
         </div>
 
         <div className="mt-6 flex gap-3">
-          {project.githubLink && (
+          {project.githubUrl && (
             <a
-              href={project.githubLink}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 text-center px-4 py-2 text-sm font-semibold rounded-lg
@@ -59,9 +60,9 @@ export default function ProjectCard({
             </a>
           )}
 
-          {project.liveLink && (
+          {project.liveUrl && (
             <a
-              href={project.liveLink}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 text-center px-4 py-2 text-sm font-semibold rounded-lg

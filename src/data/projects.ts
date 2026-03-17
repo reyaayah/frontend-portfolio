@@ -1,6 +1,7 @@
 // data/projects.ts
 
 export interface ProjectType {
+  id: number;
   title: string;
   description: string;
   image: string;
@@ -9,8 +10,10 @@ export interface ProjectType {
   liveLink?: string;
 }
 
+
 export const projects: ProjectType[] = [
   {
+    id: 1,
     title: "Point of Sale App & Product Website",
     description:
       "A POS application for restaurant businesses built with React Native and Tailwind CSS. Features role-based authentication and modules for menu, orders, and payments.",
@@ -20,6 +23,7 @@ export const projects: ProjectType[] = [
     liveLink: "https://www.lendenpos.com/",
   },
   {
+    id: 2,
     title: "Cuisine Kathmandu",
     description:
       "A dynamic restaurant web application built with Next.js. Includes an admin dashboard with reusable components and state management using Redux.",
@@ -28,6 +32,7 @@ export const projects: ProjectType[] = [
     githubLink: "",
   },
   {
+    id: 3,
     title: "Dhimay Website",
     description:
       "A static company website built during the initial project phase using React and Tailwind CSS.",
@@ -37,6 +42,7 @@ export const projects: ProjectType[] = [
     liveLink: "https://dhimay.com/",
   },
   {
+    id: 4,
     title: "Riya Awal Portfolio",
     description:
       "A personal portfolio website built with Next.js to showcase projects, skills, and professional experience.",
@@ -45,6 +51,7 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/frontend-portfolio",
   },
   {
+    id: 5,
     title: "UnFold Quotes",
     description:
       "A simple quote generator app that uses JSON data and displays quotes in a user-friendly interface.",
@@ -54,6 +61,8 @@ export const projects: ProjectType[] = [
     liveLink: "https://quotegeneratortask.netlify.app/"
   },
   {
+    id: 6,
+
     title: "Business License and Permit Portal",
     description:
       "A comprehensive portal for managing business licenses and permits, streamlining the application and approval process.",
@@ -63,6 +72,8 @@ export const projects: ProjectType[] = [
       "https://github.com/reyaayah/Business-License-and-permit-portal",
   },
   {
+    id: 7,
+
     title: "Pizza Shop App",
     description:
       "A fully functional e-commerce pizza shop built with React and Tailwind CSS, featuring menu display and cart management.",
@@ -71,6 +82,8 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/Ecommerce-site",
   },
   {
+    id: 8,
+
     title: "Web Orchestrator",
     description:
       "A web-based application for orchestrating and managing various web services and workflows.",
@@ -79,6 +92,7 @@ export const projects: ProjectType[] = [
     githubLink: "",
   },
   {
+    id: 9,
     title: "Hospital Management System",
     description:
       "A system for managing hospital operations such as patient records, appointments, and billing, demonstrating OOP concepts.",
@@ -87,6 +101,8 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/HospitalManagementSystem",
   },
   {
+    id: 10,
+
     title: "Ping Pong Game",
     description: "A simple ping pong game developed using C programming.",
     image: "/projectpreview.png",
@@ -94,6 +110,8 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/PingpongGame",
   },
   {
+    id: 11,
+
     title: "Soulsync",
     description:
       "A Flutter application for tracking daily habits and personal goals to promote productivity and self-growth.",
@@ -102,6 +120,7 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/soulsync",
   },
   {
+    id: 12,
     title: "Telephone Directory",
     description:
       "A telephone directory application built using data structures and algorithms with a doubly linked list.",
@@ -110,6 +129,8 @@ export const projects: ProjectType[] = [
     githubLink: "https://github.com/reyaayah/TelephoneDirectory",
   },
   {
+    id: 13,
+
     title: "Music Recommendation System",
     description:
       "A Python-based recommendation system that suggests songs based on lyrics and titles.",

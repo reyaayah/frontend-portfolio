@@ -29,10 +29,18 @@ exports.experience = (req, res, next) => {
         duration: Joi.string().required(),
         description: Joi.string().required(),
         technologies: Joi.array().items(Joi.string()).required(),
-        order: Joi.number().integer().default(0)
+        order: Joi.number().integer().default(0),
+        location: Joi.string().default(''),        // <-- default instead of allow('')
+        current: Joi.boolean().default(false),
+        achievement: Joi.string().default(''),    // <-- default
+        stats: Joi.array().items(Joi.string()).default([]),
+        highlight: Joi.string().default('')       // <-- default
     });
-    const { error } = schema.validate(req.body);
+
+    const { error, value } = schema.validate(req.body, { stripUnknown: true });
     if (error) return res.status(400).json({ message: error.message });
+
+    req.body = value; // <-- make sure the defaults are applied
     next();
 };
 

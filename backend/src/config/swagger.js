@@ -62,8 +62,31 @@ const options = {
                         role: { type: 'string' },
                         duration: { type: 'string' },
                         description: { type: 'string' },
-                        technologies: { type: 'array', items: { type: 'string' } },
-                        order: { type: 'integer' }
+
+                        tech: {
+                            type: 'array',
+                            items: { type: 'string' }
+                        },
+
+                        order: { type: 'integer' },
+
+                        location: { type: 'string' },
+                        current: { type: 'boolean' },
+
+                        achievement: { type: 'string' },
+
+                        stats: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    value: { type: 'string' },
+                                    label: { type: 'string' }
+                                }
+                            }
+                        },
+
+                        highlight: { type: 'string' }
                     }
                 },
                 Skill: {
@@ -85,6 +108,15 @@ const options = {
                         subject: { type: 'string' },
                         message: { type: 'string' },
                         isRead: { type: 'boolean' },
+                        createdAt: { type: 'string', format: 'date-time' }
+                    }
+                },
+                Resume: {
+                    type: 'object',
+                    properties: {
+                        id: { type: 'integer' },
+                        path: { type: 'string' },
+                        filename: { type: 'string' },
                         createdAt: { type: 'string', format: 'date-time' }
                     }
                 }
