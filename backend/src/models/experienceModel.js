@@ -1,12 +1,17 @@
 const { query } = require('../utils/sql');
 
-function parseJsonOrSplit(str) {
-    if (!str || typeof str !== 'string') return [];
-    try {
-        return JSON.parse(str);
-    } catch {
-        return str.split(',').map(s => s.trim());
+function parseJsonOrSplit(value) {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+        try {
+            const parsed = JSON.parse(value);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch {
+            return value.split(',').map(s => s.trim()).filter(s => s);
+        }
     }
+    return [];
 }
 
 function mapExperience(exp) {
@@ -19,6 +24,7 @@ function mapExperience(exp) {
 }
 async function all() {
     const results = await query("SELECT * FROM experiences ORDER BY `order` ASC");
+    console.log(results);
     return results.map(mapExperience);
 }
 

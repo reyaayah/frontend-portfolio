@@ -6,8 +6,20 @@ exports.upload = async (req, res) => {
     res.json({ message: 'Uploaded' });
 };
 
+const path = require('path');
+
 exports.download = async (req, res) => {
-    const record = await resumeModel.getLatest();
-    if (!record) return res.status(404).json({ message: 'No resume' });
-    res.redirect(record.path);
+    try {
+        const record = await resumeModel.getLatest();
+
+        if (!record) {
+            return res.status(404).json({ message: 'No resume' });
+        }
+
+        const filePath = path.resolve(record.path);
+
+        res.download(filePath, record.original_name); // forces download
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
