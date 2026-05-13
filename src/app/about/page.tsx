@@ -1,9 +1,31 @@
 "use client";
 
+import { getSkills } from "@/lib/api";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Skill } from "../admin/skills/page";
 
 export default function About() {
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        setLoading(true);
+        const data = await getSkills();
+        console.log("Fetched skills:", data);
+        setSkills(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+  }, []);
   return (
     <section className="min-h-screen px-6 py-20 bg-gradient-to-b from-pink-50 via-purple-50 to-white">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
@@ -57,23 +79,12 @@ export default function About() {
             🛠️ Skills
           </h3>
           <div className="flex flex-wrap gap-3 mt-2">
-            {[
-              "HTML",
-              "CSS",
-              "Tailwind",
-              "JavaScript",
-              "TypeScript",
-              "React",
-              "Next.js",
-              "Git & GitHub",
-              "Figma",
-              "React Native",
-            ].map((skill, index) => (
+            {skills.map((skill, index) => (
               <span
                 key={index}
                 className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium"
               >
-                {skill}
+                {skill.name}
               </span>
             ))}
           </div>

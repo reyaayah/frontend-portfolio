@@ -1,6 +1,7 @@
 "use client";
 
 import FeaturedVideos from "@/components/FeaturedVideos";
+import SkillsSection from "@/components/SkillsSection";
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -171,6 +172,7 @@ export default function Hero() {
 
 
       </section>
+      <SkillsSection />
       <FeaturedVideos />
     </>
   );

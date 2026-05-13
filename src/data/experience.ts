@@ -6,6 +6,11 @@ export interface ExperienceType {
   duration: string;
   description: string;
   tech: string[];
+  location?: string;
+  current?: boolean;
+  achievement?: string;
+  stats?: string[];
+  highlight?: string;
 }
 
 export const experiences: ExperienceType[] = [

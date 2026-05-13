@@ -7,6 +7,7 @@ import { getExperiences, createExperience, updateExperience, deleteExperience } 
 import PageHeader from '@/components/admin/PageHeader';
 import Modal from '@/components/admin/Modal';
 import { Edit, Trash2, Loader, AlertCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface Experience {
     id: number;
@@ -16,6 +17,11 @@ interface Experience {
     description: string;
     technologies: string[];
     order: number;
+    location?: string;
+    current?: boolean;
+    achievement?: string;
+    stats?: string[];
+    highlight?: string;
 }
 
 export default function ExperiencesPage() {
@@ -31,16 +37,34 @@ export default function ExperiencesPage() {
         description: '',
         technologies: '',
         order: 0,
+        location: '',
+        current: false,
+        achievement: '',
+        stats: '',
+        highlight: ''
     });
-
+    // At the top of your component (or outside it)
+    const normalizeExperiences = (data: Experience[]) =>
+        data.map((exp) => ({
+            ...exp,
+            stats: exp.stats || [],
+            technologies: exp.technologies || [],
+        }));
     useEffect(() => {
         const fetchExperiences = async () => {
             try {
                 setLoading(true);
                 const data = await getExperiences();
-                setExperiences(data);
+                console.log('Raw fetched experiences:', data);
+     
+                const mapped = normalizeExperiences(data);
+                setExperiences(mapped);
+                console.log('Fetched experiences:', mapped);
+
+                setExperiences(mapped);
             } catch (err: any) {
                 setError(err.message);
+                toast.error(err.message);
             } finally {
                 setLoading(false);
             }
@@ -57,6 +81,11 @@ export default function ExperiencesPage() {
             description: '',
             technologies: '',
             order: 0,
+            location: '',
+            current: false,
+            achievement: '',
+            stats: '',
+            highlight: ''
         });
         setEditingId(null);
         setIsModalOpen(true);
@@ -72,6 +101,11 @@ export default function ExperiencesPage() {
                 ? exp.technologies.join(', ')
                 : exp.technologies,
             order: exp.order,
+            location: exp.location || '',
+            current: exp.current || false,
+            achievement: exp.achievement || '',
+            stats: Array.isArray(exp.stats) ? exp.stats.join(', ') : exp.stats || '',
+            highlight: exp.highlight || ''
         });
         setEditingId(exp.id);
         setIsModalOpen(true);
@@ -88,18 +122,28 @@ export default function ExperiencesPage() {
                 description: formData.description,
                 technologies: formData.technologies.split(',').map(t => t.trim()),
                 order: formData.order,
+                location: formData.location || '',
+                current: formData.current || false,
+                achievement: formData.achievement || '',
+                stats: formData.stats ? formData.stats.split(',').map(s => s.trim()) : [],
+                highlight: formData.highlight || ''
             };
 
             if (editingId) {
                 await updateExperience(editingId, data);
+                toast.success('Experience updated successfully!');
             } else {
                 await createExperience(data);
+                toast.success('Experience added successfully!');
             }
 
             const updated = await getExperiences();
-            setExperiences(updated);
+            setExperiences(normalizeExperiences(updated));
+
             setIsModalOpen(false);
         } catch (err: any) {
+
+            toast.error(err.message || 'An error occurred. Please try again.');
             setError(err.message);
         }
     };
@@ -110,7 +154,9 @@ export default function ExperiencesPage() {
         try {
             await deleteExperience(id);
             setExperiences(experiences.filter(e => e.id !== id));
+            toast.success('Experience deleted successfully!');
         } catch (err: any) {
+            toast.error(err.message || 'An error occurred. Please try again.');
             setError(err.message);
         }
     };
@@ -123,12 +169,7 @@ export default function ExperiencesPage() {
                 action={{ label: '+ Add Experience', onClick: handleCreate }}
             />
 
-            {error && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-red-700">{error}</p>
-                </div>
-            )}
+
 
             {loading ? (
                 <div className="flex items-center justify-center py-12">
@@ -154,7 +195,15 @@ export default function ExperiencesPage() {
                             </div>
 
                             <p className="text-slate-700 text-sm mb-3">{exp.description}</p>
-
+                            {Array.isArray(exp.stats) && exp.stats.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                    {exp.stats.map((stat, i) => (
+                                        <span key={i} className="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded font-medium">
+                                            {typeof stat === 'object' && stat !== null && 'value' in stat ? (stat as any).value : String(stat)}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {Array.isArray(exp.technologies) &&
                                     exp.technologies.map((tech, i) => (
@@ -256,6 +305,60 @@ export default function ExperiencesPage() {
                             type="number"
                             value={formData.order}
                             onChange={(e) => setFormData({ ...formData, order: Number(e.target.value) })}
+                            className="w-full text-black px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        />
+                    </div>
+                    {/* Additional fields in your <form> inside Modal */}
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Location</label>
+                        <input
+                            type="text"
+                            value={formData.location || ''}
+                            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                            placeholder="Bhaktapur, Nepal"
+                            className="w-full text-black px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        />
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            checked={formData.current || false}
+                            onChange={(e) => setFormData({ ...formData, current: e.target.checked })}
+                            className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-600"
+                        />
+                        <label className="text-sm text-slate-700">Current Job</label>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Achievement</label>
+                        <textarea
+                            value={formData.achievement || ''}
+                            onChange={(e) => setFormData({ ...formData, achievement: e.target.value })}
+                            rows={2}
+                            className="w-full text-black px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                            placeholder="Launched portfolio site, promoted to team lead..."
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Stats (comma separated)</label>
+                        <input
+                            type="text"
+                            value={formData.stats || ''}
+                            onChange={(e) => setFormData({ ...formData, stats: e.target.value })}
+                            placeholder="10+ projects, Led 3-person team"
+                            className="w-full text-black px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Highlight</label>
+                        <input
+                            type="text"
+                            value={formData.highlight || ''}
+                            onChange={(e) => setFormData({ ...formData, highlight: e.target.value })}
+                            placeholder="Key contributor in full-stack development"
                             className="w-full text-black px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                         />
                     </div>

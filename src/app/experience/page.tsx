@@ -1,7 +1,10 @@
 "use client";
 
+import { ExperienceType } from "@/data/experience";
+import { getExperiences, getResumeDownloadUrl } from "@/lib/api";
 import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin, ArrowUpRight, Trophy, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 
 // Your experience data
 const experiences = [
@@ -53,6 +56,36 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const [experiences, setExperiences] = useState<ExperienceType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        setLoading(true);
+        const data = await getExperiences();
+        console.log('Raw fetched experiences:', data);
+        const mapped = data.map((exp: any) => ({
+          ...exp,
+          tech: exp.technologies || [], // populate tech from backend
+          stats: exp.stats || [], // ensure it's always array of objects
+        }));
+        console.log('Fetched experiences:', mapped);
+
+        setExperiences(mapped);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
+  const downloadUrl = getResumeDownloadUrl();
+  console.log('Resume download URL:', downloadUrl);
+
   return (
     <section className="min-h-screen px-6 py-20 bg-gradient-to-b from-slate-50 via-purple-50 to-white">
       <div className="max-w-6xl mx-auto">
@@ -120,17 +153,23 @@ export default function Experience() {
                         </div>
                       )}
 
-                      {/* Quick Stats */}
                       {exp.stats && (
-                        <div className="grid grid-cols-2 gap-3">
-                          {exp.stats.map((stat, i) => (
-                            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-slate-100">
-                              <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                {stat.value}
-                              </p>
-                              <p className="text-xs text-slate-600 mt-1">{stat.label}</p>
-                            </div>
-                          ))}
+                        <div className="grid grid-cols-2 gap-[10px]">
+                          {exp.stats.map((stat, i) => {
+                            const accents = ['#7F77DD', '#1D9E75', '#D4537E', '#378ADD']
+                            return (
+                              <div
+                                key={i}
+                                className="relative overflow-hidden rounded-xl border border-slate-100 bg-white p-4"
+                              >
+                                <div
+                                  className="absolute inset-x-0 top-0 h-[2px]"
+                                  style={{ background: accents[i % accents.length] }}
+                                />
+                                <p className="text-2xl font-semibold text-slate-800">{stat}</p>
+                              </div>
+                            )
+                          })}
                         </div>
                       )}
 
@@ -225,7 +264,7 @@ export default function Experience() {
           className="text-center mt-16"
         >
           <a
-            href="/Reya-Awal-cv.pdf"
+            href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"

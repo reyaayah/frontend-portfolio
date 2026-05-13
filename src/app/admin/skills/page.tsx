@@ -8,7 +8,7 @@ import PageHeader from '@/components/admin/PageHeader';
 import Modal from '@/components/admin/Modal';
 import { Edit, Trash2, Loader, AlertCircle } from 'lucide-react';
 
-interface Skill {
+export interface Skill {
     id: number;
     name: string;
     category: 'frontend' | 'backend' | 'tools' | 'other';
