@@ -1,6 +1,6 @@
 // lib/api.ts
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000' || "https://frontend-portfolio-mj3v.onrender.com";
 
 export class APIError extends Error {
     constructor(public status: number, message: string) {
