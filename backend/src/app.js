@@ -25,6 +25,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/admin', require('./routes/adminRoutes'));
 app.use('/api/projects', require('./routes/projectRoutes'));
+app.use('/api/profile', require('./routes/profileRoutes'));
 app.use('/api/experiences', require('./routes/experienceRoutes'));
 app.use('/api/skills', require('./routes/skillRoutes'));
 app.use('/api/contacts', require('./routes/contactRoutes'));

@@ -254,3 +254,47 @@ export function getResumeDownloadUrl() {
 export async function getDashboardStats() {
     return apiCall('/api/dashboard/stats', {}, true);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Additions to merge into your existing lib/api.ts
+// (Keep all your existing exports – add these below them)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type Profile = {
+    id: number;
+    name: string;
+    title: string;
+    tagline: string;
+    bio: string;
+    github_url: string | null;
+    linkedin_url: string | null;
+    email: string | null;
+    avatar_url: string | null;
+    available_for_work: boolean | number;
+};
+
+export async function getProfile(): Promise<Profile> {
+    const res = await fetch(`${API_URL}/api/profile`);
+    if (!res.ok) throw new Error("Failed to fetch profile");
+    return res.json();
+}
+
+export async function updateProfile(
+    formData: FormData,
+    token: string
+): Promise<{ message: string; profile: Profile }> {
+    const res = await fetch(`${API_URL}/api/profile`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Failed to update profile");
+    }
+    return res.json();
+}
+
+// NOTE: API_URL should already exist in your lib/api.ts
+// (e.g. const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000')
+// If it is named differently in your file, update the references above to match.

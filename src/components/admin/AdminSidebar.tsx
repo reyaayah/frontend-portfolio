@@ -14,13 +14,15 @@ import {
     Settings,
     LogOut,
     Menu,
-    X
+    X,
+    User
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 
 const menuItems = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+    { name: "Profile", href: "/admin/profile", icon: User },
     { name: 'Projects', href: '/admin/projects', icon: Code2 },
     { name: 'Experience', href: '/admin/experiences', icon: Briefcase },
     { name: 'Skills', href: '/admin/skills', icon: Zap },
@@ -72,8 +74,8 @@ export default function AdminSidebar() {
                                 href={item.href}
                                 onClick={() => setOpen(false)}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${active
-                                        ? 'bg-purple-600 text-white'
-                                        : 'text-slate-300 hover:bg-slate-700'
+                                    ? 'bg-purple-600 text-white'
+                                    : 'text-slate-300 hover:bg-slate-700'
                                     }`}
                             >
                                 <Icon size={20} />
