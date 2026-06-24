@@ -13,7 +13,7 @@ app.use(helmet());
 app.use(rateLimiter);
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+        origin: process.env.FRONTEND_URL || 'http://localhost:3000' || "https://frontend-portfolio-mj3v.onrender.com",
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     })
 );
