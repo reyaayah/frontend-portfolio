@@ -97,7 +97,7 @@ export default function Hero() {
               className="flex gap-4 pt-6"
             >
               <a
-                href="https://github.com"
+                href="https://github.com/reyaayah"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors duration-300"
@@ -106,7 +106,7 @@ export default function Hero() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/riya-awal-591330294/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors duration-300"
@@ -141,10 +141,12 @@ export default function Hero() {
 
               <div className="relative w-80 h-80 md:w-96 md:h-96">
                 <Image
-                  src="/ri.png"
-                  width={100}
-                  height={100}
+                  src="/me.jpeg"
                   alt="Riya Awal"
+                  width={400}
+                  height={400}
+                  quality={100}
+                  priority
                   className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
                 />
 

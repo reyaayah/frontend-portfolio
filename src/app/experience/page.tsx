@@ -6,6 +6,21 @@ import { Briefcase, Calendar, MapPin, ArrowUpRight, Trophy, Sparkles } from "luc
 // Your experience data
 const experiences = [
   {
+    role: "Freelance Web Developer",
+    company: "UK Tech Developer",
+    duration: "March 2026",
+    location: "Remote",
+    description: "Worked as a Freelance Web Developer for 2 weeks, developing and customizing a responsive e-commerce platform using modern web technologies with a focus on performance, user experience, and clean UI.",
+    tech: ["Next.js", "Tailwind CSS", "JavaScript", "Firebase", "CloudFlare"],
+    current: false,
+    achievement: "Successfully delivered a production-ready e-commerce website for an international client",
+    stats: [
+      { value: "2", label: "Weeks" },
+      { value: "1", label: "Project" },
+    ],
+    highlight: "Collaborated remotely with guidance of Senior developer to deliver a client-focused e-commerce solution",
+  },
+  {
     role: "Junior Frontend Developer",
     company: "Geek Tech Solutions",
     duration: "Aug 2025 - Jan 2026",
@@ -225,7 +240,7 @@ export default function Experience() {
           className="text-center mt-16"
         >
           <a
-            href="/Reya-Awal-cv.pdf"
+            href="/Riya-Awal-cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"

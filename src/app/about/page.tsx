@@ -3,75 +3,105 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const skills = [
+  "HTML",
+  "CSS",
+  "Tailwind CSS",
+  "JavaScript",
+  "TypeScript",
+  "React.js",
+  "Next.js",
+  "React Native",
+  "Flutter",
+  "Node.js",
+  "MySQL",
+  "Firebase",
+  "Git & GitHub",
+  "Figma",
+];
+
 export default function About() {
   return (
-    <section className="min-h-screen px-6 py-20 bg-gradient-to-b from-pink-50 via-purple-50 to-white">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-        {/* Profile Image */}
+    <section
+      id="about"
+      className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-white py-14 px-6"
+    >
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-16 md:flex-row">
+        {/* Image */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full md:w-1/2 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="flex w-full justify-center md:w-5/12"
         >
-          <Image
-            src="/ri.png" // Replace with your own image
-            alt="Riya Awal"
-            width={350}
-            height={350}
-            className="rounded-2xl mx-auto shadow-2xl"
-          />
+          <div className="group relative h-[500px] w-[380px] overflow-hidden rounded-3xl border-8 border-white shadow-2xl">
+            <Image
+              src="/pp.jpeg"
+              alt="Riya Awal"
+              fill
+              priority
+              quality={100}
+              sizes="(max-width: 768px) 320px, 380px"
+              className="object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
         </motion.div>
 
-        {/* Text Content */}
+        {/* Content */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full md:w-1/2"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="w-full md:w-7/12"
         >
-          <h2 className="text-4xl font-bold text-purple-700 mb-4">
-            👋 About Me
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed mb-4">
-            I&apos;m <span className="font-semibold text-purple-600">Riya Awal</span>
-            , a passionate and creative Frontend Developer with a love for
-            building beautiful, responsive, and user-centric web applications.
-          </p>
-          <p className="text-gray-700 text-lg leading-relaxed mb-4">
-            With a strong foundation in{" "}
-            <span className="text-pink-500 font-medium">
-              React, Tailwind CSS, and Next.js
+          <span className="mb-3 inline-block rounded-full bg-purple-100 px-4 py-1 text-sm font-semibold text-purple-700">
+            ABOUT ME
+          </span>
+
+          <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900">
+            Hi, I&apos;m{" "}
+            <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Riya Awal
             </span>
-            , I enjoy turning complex problems into elegant designs and
-            functional interfaces.
+          </h2>
+
+          <p className="mb-5 text-lg leading-8 text-gray-600">
+            I&apos;m a passionate <strong>Frontend Developer</strong> who enjoys
+            crafting modern, responsive, and user-friendly web experiences. I
+            love transforming ideas into elegant digital products with clean
+            code and thoughtful design.
           </p>
-          <p className="text-gray-700 text-lg leading-relaxed mb-6">
-            I&apos;m always eager to learn, collaborate, and push the boundaries of
-            what I can create. When I&apos;m not coding, you might find me exploring
-            new UI trends or sipping coffee while sketching ideas.
+
+          <p className="mb-5 text-lg leading-8 text-gray-600">
+            My primary stack includes{" "}
+            <span className="font-semibold text-purple-600">
+              React.js, Next.js, TypeScript, Tailwind CSS
+            </span>
+            , and I also have experience building mobile applications with{" "}
+            <span className="font-semibold text-pink-500">
+              React Native and Flutter
+            </span>
+            . I enjoy collaborating with designers and backend developers to
+            create seamless user experiences.
+          </p>
+
+          <p className="mb-8 text-lg leading-8 text-gray-600">
+            I&apos;m continuously learning new technologies, exploring UI/UX trends,
+            and building projects that challenge me to grow as a developer.
           </p>
 
           {/* Skills */}
-          <h3 className="text-xl font-semibold text-purple-700 mb-2">
-            🛠️ Skills
+          <h3 className="mb-4 text-2xl font-semibold text-gray-900">
+            Skills & Technologies
           </h3>
-          <div className="flex flex-wrap gap-3 mt-2">
-            {[
-              "HTML",
-              "CSS",
-              "Tailwind",
-              "JavaScript",
-              "TypeScript",
-              "React",
-              "Next.js",
-              "Git & GitHub",
-              "Figma",
-              "React Native",
-            ].map((skill, index) => (
+
+          <div className="flex flex-wrap gap-3">
+            {skills.map((skill) => (
               <span
-                key={index}
-                className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium"
+                key={skill}
+                className="rounded-full bg-gradient-to-r from-pink-100 to-purple-100 px-4 py-2 text-sm font-medium text-purple-700 transition hover:scale-105 hover:shadow-md"
               >
                 {skill}
               </span>

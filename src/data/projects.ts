@@ -11,6 +11,20 @@ export interface ProjectType {
 
 export const projects: ProjectType[] = [
   {
+    title: "Press-On Nails E-commerce Platform",
+    description:
+      "A modern e-commerce platform for a UK-based press-on nails brand built with Next.js and Tailwind CSS. Features responsive UI, Firebase authentication, product catalog, shopping cart, and an optimized shopping experience.",
+    image: "/nailsa.png",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Firebase",
+    ],
+    githubLink: "",
+    liveLink: "https://www.nailsaltd.co.uk/",
+  },
+  {
     title: "Point of Sale App & Product Website",
     description:
       "A POS application for restaurant businesses built with React Native and Tailwind CSS. Features role-based authentication and modules for menu, orders, and payments.",
@@ -52,6 +66,34 @@ export const projects: ProjectType[] = [
     technologies: ["HTML", "CSS", "JavaScript"],
     githubLink: "https://github.com/reyaayah/UnFold-Quotes",
     liveLink: "https://quotegeneratortask.netlify.app/"
+  },
+  {
+    title: "SkillShikshya – Learning Journey UI",
+    description:
+      "A modern learning platform UI built with Next.js, showcasing SkillShikshya's learning journey concept. Features a clean and responsive interface, reusable components, engaging layouts, and an optimized user experience for educational content.",
+    image: "/design.png",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+    ],
+    githubLink: "",
+    liveLink: "https://design-task-1-rho.vercel.app/",
+  },
+  {
+    title: "Beauty Parlour Appointment Booking System",
+    description:
+      "A modern appointment booking platform for beauty parlour services built with Next.js. Features an intuitive user interface, online appointment scheduling, service listings, responsive design, and a seamless booking experience across all devices.",
+    image: "/beauty-parlor.png",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+    ],
+    githubLink: "https://github.com/reyaayah/beautyparlour",
+    liveLink: "https://beautyparlour-tan.vercel.app/",
   },
   {
     title: "Business License and Permit Portal",
