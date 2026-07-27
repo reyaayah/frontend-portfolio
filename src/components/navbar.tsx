@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -18,61 +19,95 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-purple-300 via-purple-100 to-purple-100 text-white">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        <Link
-          href="/"
-          className="text-2xl font-bold text-black hover:text-purple-700 transition"
-        >
-          RIYA AWAL
-        </Link>
+    <header className="fixed top-0 left-0 w-full z-50 px-4 py-4 ">
+      <nav className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/70 backdrop-blur-xl shadow-lg px-6 py-3 transition-all duration-300">
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex gap-6 text-sm font-medium">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <Link
-                href={item.href}
-                className={`relative hover:text-purple-700 transition ${pathname === item.href
-                    ? "text-purple-500 font-semibold"
-                    : "text-gray-600"
-                  }`}
-              >
-                {item.name}
-                {pathname === item.href && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-purple-600 rounded"></span>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-2xl font-extrabold tracking-wide text-gray-800 hover:text-purple-600 transition-colors duration-300"
+          >
+            RIYA<span className="text-purple-600">.</span>
+          </Link>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-2">
+            {navItems.map((item) => {
+              const active = pathname === item.href;
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white shadow-inner px-6 pb-4 space-y-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={`block py-2 text-sm font-medium transition ${pathname === item.href ? "text-purple-700" : "text-gray-600"
-                }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+              return (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${active
+                      ? "text-white"
+                      : "text-gray-700 hover:text-purple-700"
+                      }`}
+                  >
+                    {active && (
+                      <motion.span
+                        layoutId="navbar-pill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
+                        transition={{
+                          type: "spring",
+                          stiffness: 350,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+
+                    <span className="relative z-10">{item.name}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Mobile Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 rounded-full hover:bg-purple-100 transition"
+          >
+            {menuOpen ? (
+              <X className="text-purple-700" size={24} />
+            ) : (
+              <Menu className="text-purple-700" size={24} />
+            )}
+          </button>
         </div>
-      )}
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 10 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden mt-4 rounded-3xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-xl overflow-hidden"
+            >
+              {navItems.map((item) => {
+                const active = pathname === item.href;
+
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block px-6 py-4 text-center text-base font-medium transition-all duration-300 ${active
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
+                      : "text-gray-700 hover:bg-purple-50 hover:text-purple-700"
+                      }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
     </header>
   );
 }

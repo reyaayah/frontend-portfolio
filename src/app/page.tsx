@@ -2,176 +2,151 @@
 
 import FeaturedVideos from "@/components/FeaturedVideos";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, Code2, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
 
 export default function Hero() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 py-20 bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <section
+        className={`${display.variable} ${mono.variable} relative min-h-screen bg-linear-to-br from-slate-50 via-purple-50 to-pink-50  px-6 md:px-16 py-24 md:py-32`}
+      >
+        <div className="max-w-6xl mx-auto">
+          {/* Terminal-style status line */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-20 right-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          />
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2 font-[family-name:var(--font-mono)] text-sm text-[#6B7280] mb-8"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3454D1]" />
+            <span>available for opportunities</span>
+            <span
+              className="inline-block w-[7px] h-[14px] bg-[#3454D1] animate-pulse"
+              aria-hidden="true"
+            />
+          </motion.div>
+
+          <div className="grid md:grid-cols-[1.4fr_1fr] gap-16 items-end">
+            {/* Name block */}
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-[family-name:var(--font-display)] text-[15vw] md:text-[7.5vw] leading-[0.88] tracking-tight text-[#14161A] font-semibold"
+              >
+                Riya
+                <br />
+                Awal
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="mt-8 max-w-md text-[#3F4450] text-lg leading-relaxed"
+              >
+                Frontend developer building calm, precise interfaces — clean
+                code, considered detail, no wasted pixels.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.35 }}
+                className="mt-10 flex flex-wrap items-center gap-8"
+              >
+                <a
+                  href="/projects"
+                  className="group inline-flex items-center gap-2 text-[#14161A] font-medium border-b-2 border-[#14161A] pb-1 hover:text-[#3454D1] hover:border-[#3454D1] transition-colors"
+                >
+                  View my work
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="/contact"
+                  className="text-[#6B7280] font-medium hover:text-[#14161A] transition-colors"
+                >
+                  Get in touch
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Photo — small, offset, editorial rather than iconic */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative justify-self-end"
+            >
+              <div className="relative w-48 md:w-64 aspect-[4/5] -rotate-2">
+                <Image
+                  src="/me.jpeg"
+                  alt="Riya Awal"
+                  fill
+                  quality={100}
+                  priority
+                  sizes="(min-width: 768px) 256px, 192px"
+                  className="object-cover grayscale-[15%] contrast-[1.03]"
+                />
+              </div>
+              <p className="mt-3 font-[family-name:var(--font-mono)] text-xs text-[#9CA3AF] -rotate-2">
+                27.71°N, 85.32°E — KTM
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Divider */}
+          <div className="mt-20 md:mt-24 border-t border-[#E4E4E7]" />
+
+          {/* Footer row: location + socials */}
           <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-20 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full text-purple-700 text-sm font-medium"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Available for opportunities</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold text-slate-900 leading-tight"
-            >
-              Hi, I&apos;m{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Riya Awal
-              </span>
-            </motion.h1>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-2xl md:text-3xl font-semibold text-slate-700"
-            >
-              Frontend Developer
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="text-lg text-slate-600 max-w-xl leading-relaxed"
-            >
-              I craft beautiful, performant, and user-centric web experiences with modern technologies.
-              Passionate about clean code and pixel-perfect designs.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
-            >
-              <a
-                href="/projects"
-                className="group inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                View My Work
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-2 border-slate-200 hover:border-purple-300"
-              >
-                Get In Touch
-              </a>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="flex gap-4 pt-6"
-            >
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="pt-6 flex flex-wrap items-center justify-between gap-4 font-[family-name:var(--font-mono)] text-sm text-[#6B7280]"
+          >
+            <span>based in Kathmandu, Nepal</span>
+            <div className="flex items-center gap-6">
               <a
                 href="https://github.com/reyaayah"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors duration-300"
-                aria-label="GitHub"
+                className="hover:text-[#14161A] transition-colors inline-flex items-center gap-1.5"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-4 h-4" /> github
               </a>
               <a
                 href="https://www.linkedin.com/in/riya-awal-591330294/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors duration-300"
-                aria-label="LinkedIn"
+                className="hover:text-[#14161A] transition-colors inline-flex items-center gap-1.5"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4" /> linkedin
               </a>
               <a
                 href="mailto:riyaawal7@gmail.com"
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors duration-300"
-                aria-label="Email"
+                className="hover:text-[#14161A] transition-colors inline-flex items-center gap-1.5"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4" /> email
               </a>
-            </motion.div>
-          </div>
-
-          {/* Image/Visual Side */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="relative flex items-center justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative"
-            >
-              {/* Decorative rings */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-2xl opacity-20 scale-110" />
-
-              <div className="relative w-80 h-80 md:w-96 md:h-96">
-                <Image
-                  src="/me.jpeg"
-                  alt="Riya Awal"
-                  width={400}
-                  height={400}
-                  quality={100}
-                  priority
-                  className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
-                />
-
-                {/* Floating Tech Icons */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center"
-                >
-                  <Code2 className="w-8 h-8 text-purple-600" />
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-lg flex items-center justify-center text-white font-bold text-xl"
-                >
-                  &lt;/&gt;
-                </motion.div>
-              </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
-
-
       </section>
       <FeaturedVideos />
     </>
