@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import KeyProjects from "@/components/Keyprojects";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -148,6 +149,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </section>
+      <KeyProjects />
       <FeaturedVideos />
     </>
   );

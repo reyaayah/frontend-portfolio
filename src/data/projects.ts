@@ -29,7 +29,7 @@ export const projects: ProjectType[] = [
     description:
       "A POS application for restaurant businesses built with React Native and Tailwind CSS. Features role-based authentication and modules for menu, orders, and payments.",
     image: "/pos.png",
-    technologies: ["React Native", "Tailwind CSS"],
+    technologies: ["React Native", "Tailwind CSS", "Redux"],
     githubLink: "",
     liveLink: "https://www.lendenpos.com/",
   },
@@ -40,6 +40,19 @@ export const projects: ProjectType[] = [
     image: "/cuisinektm.png",
     technologies: ["Next.js", "Redux", "Tailwind CSS"],
     githubLink: "",
+  }, {
+    title: "Beauty Parlour Appointment Booking System",
+    description:
+      "A modern appointment booking platform for beauty parlour services built with Next.js. Features an intuitive user interface, online appointment scheduling, service listings, responsive design, and a seamless booking experience across all devices.",
+    image: "/beauty-parlor.png",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+    ],
+    githubLink: "https://github.com/reyaayah/beautyparlour",
+    liveLink: "https://beautyparlour-tan.vercel.app/",
   },
   {
     title: "Dhimay Website",
@@ -81,20 +94,7 @@ export const projects: ProjectType[] = [
     githubLink: "",
     liveLink: "https://design-task-1-rho.vercel.app/",
   },
-  {
-    title: "Beauty Parlour Appointment Booking System",
-    description:
-      "A modern appointment booking platform for beauty parlour services built with Next.js. Features an intuitive user interface, online appointment scheduling, service listings, responsive design, and a seamless booking experience across all devices.",
-    image: "/beauty-parlor.png",
-    technologies: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "TypeScript",
-    ],
-    githubLink: "https://github.com/reyaayah/beautyparlour",
-    liveLink: "https://beautyparlour-tan.vercel.app/",
-  },
+
   {
     title: "Business License and Permit Portal",
     description:
