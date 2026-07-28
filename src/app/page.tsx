@@ -6,6 +6,8 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import KeyProjects from "@/components/Keyprojects";
+import TechStack from "@/components/TechStack";
+import ContactCTA from "@/components/ContactCta";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -150,7 +152,9 @@ export default function Hero() {
         </div>
       </section>
       <KeyProjects />
+      <TechStack />
       <FeaturedVideos />
+      <ContactCTA />
     </>
   );
 }
