@@ -33,6 +33,7 @@ export const projects: ProjectType[] = [
     githubLink: "",
     liveLink: "https://www.lendenpos.com/",
   },
+
   {
     title: "Cuisine Kathmandu",
     description:
@@ -53,6 +54,22 @@ export const projects: ProjectType[] = [
     ],
     githubLink: "https://github.com/reyaayah/beautyparlour",
     liveLink: "https://beautyparlour-tan.vercel.app/",
+  },
+  {
+    title: "RideMate – Ride Sharing App",
+    description:
+      "A ride-sharing mobile application that connects people traveling to the same destination, making commuting more affordable and convenient. Built with React Native, Node.js, and MySQL, it features user authentication, ride creation, ride matching, real-time ride details, and an intuitive mobile experience.",
+    image: "/ridemate.jpeg",
+    technologies: [
+      "React Native",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "Geoapify Maps API",
+      "Expo",
+    ],
+    githubLink: "",
+    liveLink: "",
   },
   {
     title: "Dhimay Website",
