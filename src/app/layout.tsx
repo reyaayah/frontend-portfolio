@@ -1,9 +1,9 @@
-"use client";
 
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </footer>
       </body>
+      <GoogleAnalytics gaId="G-C1KM74785Y" />
     </html>
   );
 }
